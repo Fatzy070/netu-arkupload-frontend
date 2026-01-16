@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const File = () => {
   const [files, setFiles] = useState([])
@@ -32,6 +33,7 @@ const File = () => {
   return (
     <div className="p-8 max-w-5xl mx-auto">
       <h1 className="text-2xl font-bold mb-6 text-center">All Uploaded Files</h1>
+      <Link to='/' className='underline text-blue-400'>Home</Link>
 
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-300 rounded-md">

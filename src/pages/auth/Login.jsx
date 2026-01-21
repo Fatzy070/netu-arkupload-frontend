@@ -113,9 +113,7 @@ const Gate = () => {
           </button>
         </form>
 
-        <p className="mt-8 text-xs uppercase">
-          We don’t want your cookies. We want your data.
-        </p>
+        
       </div>
     </div>
   )

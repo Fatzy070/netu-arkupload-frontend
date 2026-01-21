@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState , useRef } from 'react'
 import axios from 'axios'
 import { Link ,  useNavigate  } from 'react-router-dom'
 
@@ -10,6 +10,8 @@ const Hopper = () => {
   const [dragging, setDragging] = useState(false)
   const navigate = useNavigate()
   const token = localStorage.getItem('token')
+
+  const fileInputRef = useRef()
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -24,6 +26,20 @@ const Hopper = () => {
 
     fetchUser()
   }, [])
+
+   const handleFile = (selectedFile) => {
+    if (!selectedFile) return
+    setFile(selectedFile)
+    setQueue((prev) => [...prev, `${selectedFile.name} .......... QUEUED`])
+  }
+
+  const handleClickUploadArea = () => {
+    fileInputRef.current?.click() 
+  }
+
+  const handleInputChange = (e) => {
+    handleFile(e.target.files[0])
+  }
 
   const handleDrop = (e) => {
     e.preventDefault()
@@ -108,7 +124,7 @@ const Hopper = () => {
 
      
       <h1 className="px-8 py-6 text-2xl">
-        // FEED_THE_FURNACE
+         FEED_THE_FURNACE
       </h1>
 
       
@@ -119,8 +135,9 @@ const Hopper = () => {
         }}
         onDragLeave={() => setDragging(false)}
         onDrop={handleDrop}
+        onClick={handleClickUploadArea}
         className={`mx-8 h-[60vh] flex flex-col items-center justify-center
-        border-4 border-dashed border-black
+        border-4 border-dashed text-center px-1 border-black
         ${dragging ? 'bg-black text-white' : ''}`}
       >
         <p className="uppercase text-lg">
@@ -129,6 +146,12 @@ const Hopper = () => {
         <p className="text-sm mt-2">
           Accepting .txt, .py, .jsonl, and 40+ others.
         </p>
+        <input
+         type="file"
+         ref={fileInputRef}
+         className='hidden'
+         onChange={(e) => handleInputChange(e)}
+         />
       </div>
 
       

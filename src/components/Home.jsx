@@ -117,6 +117,12 @@ const Hopper = () => {
             onClick={() => handleLogout()}
             className='pl-1'
             >LOGOUT</span>
+            <p>
+              <a href="https://GitHub.com/Electroiscoding/crayon" 
+              target='_blank'
+              className='underline text-blue-500'
+              >Xerv Crayon</a>
+            </p>
           </div>
         )}
         

@@ -4,6 +4,8 @@ import Gate from "./pages/auth/Login"
 import Hopper from "./components/Home"
 import Residue from "./components/File"
 import NotFound from "./pages/NotFound"
+import Uploaded from "./components/Uploaded"
+
 function App() {
 
 
@@ -16,6 +18,7 @@ function App() {
             <Route element={<ProtectedRoute />} >
                 <Route path='/' element={<Hopper />} />
                 <Route path="files" element={<Residue />} />
+                <Route path="uploaded" element={<Uploaded />} />
             </Route>
 
             <Route path='*' element={<NotFound /> }/>

@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { BsThreeDots } from "react-icons/bs";
 
-const Residue = () => {
+const Uploaded = () => {
   const [files, setFiles] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
-
+ const token = localStorage.getItem('token')
   useEffect(() => {
     const fetchFiles = async () => {
-      const token = localStorage.getItem('token')
+     
 
       try {
         const res = await axios.get(
-          'https://netu-arkupload-backend.onrender.com/api/auth/files',
+          'https://netu-arkupload-backend.onrender.com/api/auth/file',
           {
             headers: { Authorization: `Bearer ${token}` }
           }
@@ -28,6 +29,21 @@ const Residue = () => {
 
     fetchFiles()
   }, [])
+
+  const HandleDelete = async (id) => {
+        try {
+            const res = await axios.delete(`https://netu-arkupload-backend.onrender.com/api/auth/${id}/delete` , {
+                headers: {
+                    Authorization:`Bearer ${token}`
+                }
+            })
+        
+            window.confirm('Are you sure you want to delete this file')
+        } catch (error) {
+            console.error('Error deleting file' , error)
+            setError(error.response?.data.message || 'Something went wrong')
+        }
+  }
 
   if (loading) {
     return (
@@ -80,7 +96,8 @@ const Residue = () => {
           <p>Your hands are clean. Go get them dirty.</p>
         ) : (
           files.map((file) => (
-            <p key={file._id}>
+            <div key={file._id} className='flex items-center gap-2'> 
+                <p>
               {new Date(file.createdAt).toISOString().split('T')[0]}
               {' | '}
               {file.originalName}
@@ -89,6 +106,13 @@ const Residue = () => {
               {' | '}
               {file.user?.email}
             </p>
+            <button
+              onClick={() => HandleDelete(file._id)}
+              className=''
+              >
+                  <BsThreeDots size={20} color='red'/>
+              </button>
+            </div>
           ))
         )}
       </div>
@@ -96,4 +120,4 @@ const Residue = () => {
   )
 }
 
-export default Residue
+export default Uploaded

@@ -122,6 +122,9 @@ const Hopper = () => {
                 FILES
               </Link>
             )}
+            <Link to="/uploaded" className="ml-6 lowercase text-blue-500 underline">
+                uploaded
+              </Link>
             </p>
           </div>
         )}

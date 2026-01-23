@@ -103,16 +103,11 @@ const Hopper = () => {
   return (
     <main className="min-h-screen bg-white text-black font-mono relative">
 
-      <div className="flex justify-between border-b-2 border-black px-8 py-4">
+      <div className="flex justify-between border-b-2 border-black px-2 md:px-8 py-4">
         <span className="font-bold">SOOT</span>
         {user && (
           <div className="uppercase text-sm">
             USER: {user.email}
-            {user.role === 'admin' && (
-              <Link to="/files" className="ml-6 underline">
-                FILES
-              </Link>
-            )}
             <span 
             onClick={() => handleLogout()}
             className='pl-1'
@@ -122,6 +117,11 @@ const Hopper = () => {
               target='_blank'
               className='underline text-blue-500'
               >Xerv Crayon</a>
+               {user.role === 'admin' && (
+              <Link to="/files" className="ml-6 text-blue-500 underline">
+                FILES
+              </Link>
+            )}
             </p>
           </div>
         )}

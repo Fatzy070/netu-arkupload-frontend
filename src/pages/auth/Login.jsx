@@ -39,15 +39,15 @@ const Gate = () => {
     <div className="min-h-screen grid grid-cols-2 font-mono">
       
      
-      <div className="bg-black text-white flex flex-col justify-center px-16">
-        <h1 className="text-6xl font-bold mb-4">SOOT</h1>
+      <div className="bg-black text-white flex flex-col justify-center md:px-16">
+        <h1 className="md:text-6xl text-center text-4xl font-bold mb-4">SOOT</h1>
         <p className="uppercase tracking-wide">
           Raw material for the Crayon engine.
         </p>
       </div>
 
       
-      <div className="bg-white text-black flex flex-col justify-center px-16">
+      <div className="bg-white text-black flex flex-col justify-center px-1 md:px-16">
         
         
         <div className="flex gap-6 mb-10 uppercase text-sm">
